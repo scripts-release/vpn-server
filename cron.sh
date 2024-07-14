@@ -128,16 +128,10 @@ if($query->num_rows > 0)
 		
 	}
 }
-$location = '/etc/authorization/pandavpnunite/active.sh';
+$location = '/etc/authorization/scriptsrelease/active.sh';
 $fp = fopen($location, 'w');
 fwrite($fp, $data) or die("Unable to open file!");
 fclose($fp);
-
-$location = '/etc/authorization/pandavpnunite/uuid.sh';
-$fp = fopen($location, 'w');
-fwrite($fp, $uuid) or die("Unable to open file!");
-fclose($fp);
-
 
 #In-Active and Invalid Accounts
 $data2 = '';
@@ -155,7 +149,7 @@ if($query2->num_rows > 0)
 		$data2 .= 'userdel '.$toadd.''.PHP_EOL;
 	}
 }
-$location2 = '/etc/authorization/pandavpnunite/not-active.sh';
+$location2 = '/etc/authorization/scriptsrelease/not-active.sh';
 $fp = fopen($location2, 'w');
 fwrite($fp, $data2) or die("Unable to open file!");
 fclose($fp);
