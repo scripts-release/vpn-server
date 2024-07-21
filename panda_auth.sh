@@ -3,7 +3,7 @@ cat <<EOM > /etc/openvpn/login/test_config.sh
 HOST='185.61.137.171'
 USER='daddyjoh_pandavpn_unity'
 PASS='pandavpn_unity'
-DBNAME='daddyjoh_pandavpn_unity'
+DB='daddyjoh_pandavpn_unity'
 EOM
 
 chmod 755 /etc/openvpn/login/test_config.sh
