@@ -13,14 +13,14 @@ screen -dmS webinfo php -S 0.0.0.0:5623 -t /root/.web/
 . /etc/openvpn/login/config.sh
 
 server_ip=$(curl -s https://api.ipify.org)
-mysql -u $USER -p$PASS -D $DB -h $HOST -e "UPDATE server_list SET status='1' WHERE server_ip='$serverip' "
+mysql -u $USER -p$PASS -D $DB -h $HOST -e "UPDATE server_list SET status='1' WHERE server_ip='$server_ip' "
 
 . /etc/openvpn/login/test_config.sh
 
 server_ip=$(curl -s https://api.ipify.org)
-mysql -u $USER -p$PASS -D $DB -h $HOST -e "UPDATE server_list SET status='1' WHERE server_ip='$serverip' "
+mysql -u $USER -p$PASS -D $DB -h $HOST -e "UPDATE server_list SET status='1' WHERE server_ip='$server_ip' "
 
 . /etc/openvpn/login/test_config2.sh
 
 server_ip=$(curl -s https://api.ipify.org)
-mysql -u $USER -p$PASS -D $DB -h $HOST -e "UPDATE server_list SET status='1' WHERE server_ip='$serverip' "
+mysql -u $USER -p$PASS -D $DB -h $HOST -e "UPDATE server_list SET status='1' WHERE server_ip='$server_ip' "
