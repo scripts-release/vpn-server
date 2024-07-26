@@ -9,3 +9,8 @@ screen -dmS udpvpn /usr/bin/badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clie
 screen -dmS slowdns-server ~/dnstt/dnstt-server/dnstt-server -udp :5300 -privkey-file ~/dnstt/dnstt-server/server.key $(cat /root/ns.txt) 127.0.0.1:22
 screen -dmS slowdns-client ~/dnstt/dnstt-client/dnstt-client -dot 1.1.1.1:853 -pubkey-file ~/dnstt/dnstt-client/server.pub $(cat /root/ns.txt) 127.0.0.1:2222
 screen -dmS webinfo php -S 0.0.0.0:5623 -t /root/.web/
+
+. /etc/openvpn/login/config.sh
+
+server_ip=$(curl -s https://api.ipify.org)
+mysql -u $USER -p$PASS -D $DB -h $HOST -e "UPDATE server_list SET status='1' WHERE server_ip='$serverip' "
