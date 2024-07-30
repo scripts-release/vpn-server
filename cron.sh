@@ -105,9 +105,9 @@ function encrypt_key($paswd)
 
 $data = '';
 $uuid = '';
-$premium_active = "status='live' AND is_freeze=0 AND is_ban=0 AND duration > 0";
-$vip_active = "status='live' AND is_freeze=0 AND is_ban=0 AND vip_duration > 0";
-$private_active = "status='live' AND is_freeze=0 AND is_ban=0 AND private_duration > 0";
+$premium_active = "status='live' AND is_validated=1 AND is_freeze=0 AND is_ban=0 AND duration > 0";
+$vip_active = "status='live' AND is_validated=1 AND is_freeze=0 AND is_ban=0 AND vip_duration > 0";
+$private_active = "status='live' AND is_validated=1 AND is_freeze=0 AND is_ban=0 AND private_duration > 0";
 $query = $mysqli->query("SELECT * FROM users WHERE ".$premium_active." OR ".$vip_active." OR ".$private_active." ORDER by user_id DESC");
 if($query->num_rows > 0)
 {
@@ -135,9 +135,9 @@ fclose($fp);
 
 #In-Active and Invalid Accounts
 $data2 = '';
-$premium_deactived = "duration <= 0";
-$vip_deactived = "vip_duration <= 0";
-$private_deactived = "private_duration <= 0";
+$premium_deactived = "is_validated=0 OR is_freeze=1 OR is_ban=1 OR duration <= 0";
+$vip_deactived = "is_validated=0 OR is_freeze=1 OR is_ban=1 OR vip_duration <= 0";
+$private_deactived = "is_validated=0 OR is_freeze=1 OR is_ban=1 OR private_duration <= 0";
 
 $query2 = $mysqli->query("SELECT * FROM users WHERE ".$premium_deactived."");
 if($query2->num_rows > 0)
