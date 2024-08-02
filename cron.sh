@@ -138,9 +138,9 @@ $data2 = '';
 $premium_deactived = "is_validated=0 OR is_freeze=1 OR is_ban=1 OR duration <= 0";
 $vip_deactived = "is_validated=0 OR is_freeze=1 OR is_ban=1 OR vip_duration <= 0";
 $private_deactived = "is_validated=0 OR is_freeze=1 OR is_ban=1 OR private_duration <= 0";
-$all_deactivated = "is_validated=0 OR is_freeze=1 OR is_ban=1 OR (duration <= 0 and vip_duration <= 0 and private_duration <= 0)""
+$all_deactivated = "is_validated=0 OR is_freeze=1 OR is_ban=1 OR (duration <= 0 and vip_duration <= 0 and private_duration <= 0)";
 
-$query2 = $mysqli->query("SELECT * FROM users WHERE ".$all_deactivated."");
+$query2 = $mysqli->query("SELECT * FROM users WHERE is_validated=0 OR is_freeze=1 OR is_ban=1 OR (duration <= 0 AND vip_duration <= 0 AND private_duration <= 0)");
 if($query2->num_rows > 0)
 {
 	while($row2 = $query2->fetch_assoc())
