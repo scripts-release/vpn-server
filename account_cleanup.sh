@@ -4,17 +4,17 @@
 active_users=""
 
 # Extract usernames from active.sh if it exists
-if [[ -f /etc/authorization/pandavpnunite/active.sh ]]; then
-  active_users=$(awk '{print $2}' /etc/authorization/pandavpnunite/active.sh | sort -u)
+if [[ -f /etc/authorization/scriptsrelease/active.sh ]]; then
+  active_users=$(awk '{print $2}' /etc/authorization/scriptsrelease/active.sh | sort -u)
 fi
 
 # Extract usernames from active2.sh if it exists
-if [[ -f /etc/authorization/pandavpnunite/active2.sh ]]; then
-  active_users+=" $(awk '{print $2}' /etc/authorization/pandavpnunite/active2.sh | sort -u)"
+if [[ -f /etc/authorization/scriptsrelease/active2.sh ]]; then
+  active_users+=" $(awk '{print $2}' /etc/authorization/scriptsrelease/active2.sh | sort -u)"
 fi
 
-if [[ -f /etc/authorization/pandavpnunite/active3.sh ]]; then
-  active_users+=" $(awk '{print $2}' /etc/authorization/pandavpnunite/active3.sh | sort -u)"
+if [[ -f /etc/authorization/scriptsrelease/active3.sh ]]; then
+  active_users+=" $(awk '{print $2}' /etc/authorization/scriptsrelease/active3.sh | sort -u)"
 fi
 
 # Remove duplicates from active_users
