@@ -16,6 +16,12 @@ if [ -z "$userd" ]; then
 fi
 
 user=$(grep -E "^#vlsg " "/etc/xray/config.json" | cut -d ' ' -f 2 | grep "$userd")
+
+if [ -z "$user" ]; then
+  echo "$userd does not exists."
+  #exit 1
+fi
+
 sed -i "/^#vlsg $user/,/^},{/d" /etc/xray/config.json
 sed -i "/^#vls $user/,/^},{/d" /etc/xray/config.json
 echo "$user has been deleted"
