@@ -7,6 +7,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^#vlsg " "/etc/xray/config.json")
 	fi
 
 userd="$1"
+userd="${userd//_/}"
 
 if [ -z "$userd" ]; then
   echo "user is empty. Exiting..."
@@ -23,4 +24,3 @@ fi
 sed -i "/^#vlsg $user/,/^},{/d" /etc/xray/config.json
 sed -i "/^#vls $user/,/^},{/d" /etc/xray/config.json
 echo "$user has been deleted"
-systemctl restart xray.service

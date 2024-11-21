@@ -120,7 +120,9 @@ if($query->num_rows > 0)
 		$password = decrypt_key($row['user_pass']);
 		$password = encryptor('decrypt',$password);		
 		$data .= 'id ' . $username . ' &>/dev/null && echo ' . $username . ':' . $password . ' | chpasswd || useradd -p $(openssl passwd -1 ' . $password . ') -M -s /sbin/nologin ' . $username . PHP_EOL;
-		$vdata .= '/usr/bin/add-vless '. $username . ' '. $password . PHP_EOL;
+		$username = strtolower(str_replace(['_', ' '], '', $username));
+		$password = strtolower(str_replace(['_', ' '], '', $password));
+		$vdata .= "/usr/bin/add-vless ". $username . " ". $password . PHP_EOL;
 		$uuid .= '';
 		$v2ray_id = $row['v2ray_id'];
     if($v2ray_id != '')
@@ -137,6 +139,8 @@ fwrite($fp, $data) or die("Unable to open file!");
 fclose($fp);
 
 $vfp = fopen($vlocation, 'w');
+# $service = 'xray.service';
+# $vdata .= 'systemctl restart'. ' '. $service . PHP_EOL;
 fwrite($vfp, $vdata) or die("Unable to open file!");
 fclose($vfp);
 
@@ -157,6 +161,7 @@ if($query2->num_rows > 0)
 		$vdata2 .= '';
 		$toadd = $row2['user_name'];	
 		$data2 .= 'userdel '.$toadd.''.PHP_EOL;
+		$toadd = strtolower(str_replace(['_', ' '], '', $toadd));
 		$vdata2 .= '/usr/bin/del-vless '.$toadd.''.PHP_EOL;
 	}
 }
@@ -165,6 +170,8 @@ $location2 = '/etc/authorization/scriptsrelease/not-active.sh';
 $fp = fopen($location2, 'w');
 fwrite($fp, $data2) or die("Unable to open file!");
 fclose($fp);
+# $service = 'xray.service';
+# $vdata2 .= 'systemctl restart'. ' '. $service . PHP_EOL;
 $vfp = fopen($vlocation2, 'w');
 fwrite($vfp, $vdata2) or die("Unable to open file!");
 fclose($vfp);

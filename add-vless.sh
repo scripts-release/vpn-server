@@ -17,6 +17,7 @@ export IP=$( curl -s https://ipinfo.io/ip/ )
 export NETWORK_IFACE="$(ip route show to default | awk '{print $5}')"
 
 
+
 user="$1"
 CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 if [ "$CLIENT_EXISTS" -ne 0 ]; then
@@ -25,6 +26,9 @@ if [ "$CLIENT_EXISTS" -ne 0 ]; then
 	echo ""
 else
 user_pass="$1:$2"
+user_pass="${user_pass//_/}"
+user_pass="${user_pass,,}"
+
 #read -p "Expired (days): " masaaktif
 sed -i '/#vless$/a\#vls '"$user"'\
 },{"id": "'""$user_pass""'","email": "'""$user""'"' /etc/xray/config.json
