@@ -19,7 +19,7 @@ user=$(grep -E "^#vlsg " "/etc/xray/config.json" | cut -d ' ' -f 2 | grep "$user
 
 if [ -z "$user" ]; then
   echo "$userd does not exists."
-  #exit 1
+  exit 1
 fi
 
 sed -i "/^#vlsg $user/,/^},{/d" /etc/xray/config.json
