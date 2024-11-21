@@ -4,7 +4,7 @@ for session in $(screen -ls | grep Detached | grep -v installer | cut -d. -f1); 
 screen -dmS socks python /etc/socks.py 90
 screen -dmS websocket python /usr/local/sbin/websocket.py 8081
 screen -dmS socksovpn python /usr/local/sbin/socksovpn.py 8082
-screen -dmS socksall python /usr/local/sbin/all_service.py 80
+screen -dmS socksall python /usr/local/sbin/all_service.py 700
 screen -dmS proxy python /usr/local/sbin/proxy.py 8010
 screen -dmS udpvpn /usr/bin/badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 3
 screen -dmS slowdns-server /etc/.default/dnstt-server -udp :5300 -privkey-file /etc/.default/server.key $(cat /root/ns.txt) 127.0.0.1:22
