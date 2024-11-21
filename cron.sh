@@ -114,11 +114,12 @@ if($query->num_rows > 0)
 	while($row = $query->fetch_assoc())
 	{
 		$data .= '';
+		$vdata .= '';
 		$username = $row['user_name'];
 		$password = decrypt_key($row['user_pass']);
 		$password = encryptor('decrypt',$password);		
 		$data .= 'id ' . $username . ' &>/dev/null && echo ' . $username . ':' . $password . ' | chpasswd || useradd -p $(openssl passwd -1 ' . $password . ') -M -s /sbin/nologin ' . $username . PHP_EOL;
-
+		$vdata .= '/usr/bin/add-vless '. $username . ':'. $password . PHP_EOL;
 		$uuid .= '';
 		$v2ray_id = $row['v2ray_id'];
     if($v2ray_id != '')
@@ -129,9 +130,14 @@ if($query->num_rows > 0)
 	}
 }
 $location = '/etc/authorization/scriptsrelease/active.sh';
+$vlocation '/etc/authorization/scriptsrelease/vactive.sh'
 $fp = fopen($location, 'w');
 fwrite($fp, $data) or die("Unable to open file!");
 fclose($fp);
+
+$vfp = fopen($vlocation, 'w');
+fwrite($vfp, $vdata) or die("Unable to open file!");
+fclose($vfp);
 
 #In-Active and Invalid Accounts
 $data2 = '';
@@ -146,14 +152,20 @@ if($query2->num_rows > 0)
 	while($row2 = $query2->fetch_assoc())
 	{
 		$data2 .= '';
+		$vdata2 .= '';
 		$toadd = $row2['user_name'];	
 		$data2 .= 'userdel '.$toadd.''.PHP_EOL;
+		$vdata2 .= '/usr/bin/del-vless '.$toadd.''.PHP_EOL;
 	}
 }
+$vlocation2 = '/etc/authorization/scriptsrelease/vnot-active.sh';
 $location2 = '/etc/authorization/scriptsrelease/not-active.sh';
 $fp = fopen($location2, 'w');
 fwrite($fp, $data2) or die("Unable to open file!");
 fclose($fp);
+$vfp = fopen($vlocation2, 'w');
+fwrite($vfp, $vdata2) or die("Unable to open file!");
+fclose($vfp);
 
 $mysqli->close();
 ?>
