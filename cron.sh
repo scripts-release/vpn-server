@@ -104,6 +104,7 @@ function encrypt_key($paswd)
 
 
 $data = '';
+$vdata = '';
 $uuid = '';
 $premium_active = "status='live' AND is_validated=1 AND is_freeze=0 AND is_ban=0 AND duration > 0";
 $vip_active = "status='live' AND is_validated=1 AND is_freeze=0 AND is_ban=0 AND vip_duration > 0";
@@ -141,6 +142,7 @@ fclose($vfp);
 
 #In-Active and Invalid Accounts
 $data2 = '';
+$vdata2 = '';
 $premium_deactived = "is_validated=0 OR is_freeze=1 OR is_ban=1 OR duration <= 0";
 $vip_deactived = "is_validated=0 OR is_freeze=1 OR is_ban=1 OR vip_duration <= 0";
 $private_deactived = "is_validated=0 OR is_freeze=1 OR is_ban=1 OR private_duration <= 0";
