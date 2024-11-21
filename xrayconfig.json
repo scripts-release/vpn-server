@@ -22,7 +22,8 @@
           "decryption":"none",
             "clients": [
                {
-                 "id": "teamrreds2024"                 
+                 "id": "teamrreds2024"    
+#vless
                 }
           ]
        },
