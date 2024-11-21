@@ -131,7 +131,7 @@ if($query->num_rows > 0)
 	}
 }
 $location = '/etc/authorization/scriptsrelease/active.sh';
-$vlocation '/etc/authorization/scriptsrelease/vactive.sh'
+$vlocation = '/etc/authorization/scriptsrelease/vactive.sh';
 $fp = fopen($location, 'w');
 fwrite($fp, $data) or die("Unable to open file!");
 fclose($fp);
