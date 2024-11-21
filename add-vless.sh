@@ -17,8 +17,6 @@ export IP=$( curl -s https://ipinfo.io/ip/ )
 export NETWORK_IFACE="$(ip route show to default | awk '{print $5}')"
 
 
-clear
-
 user="$1"
 CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 if [ "$CLIENT_EXISTS" -ne 0 ]; then

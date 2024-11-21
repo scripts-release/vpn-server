@@ -6,8 +6,6 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^#vlsg " "/etc/xray/config.json")
 		exit 1
 	fi
 
-	clear
-
 userd="$1"
 
 if [ -z "$userd" ]; then
