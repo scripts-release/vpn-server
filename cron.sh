@@ -160,7 +160,7 @@ if($query2->num_rows > 0)
 		$data2 .= '';
 		$vdata2 .= '';
 		$toadd = $row2['user_name'];	
-		$data2 .= 'userdel '.$toadd.''.PHP_EOL;
+		$data2 .= 'userdel -f '.$toadd.''.PHP_EOL;
 		$toadd = strtolower(str_replace(['_', ' '], '', $toadd));
 		$vdata2 .= '/usr/bin/del-vless '.$toadd.''.PHP_EOL;
 	}
