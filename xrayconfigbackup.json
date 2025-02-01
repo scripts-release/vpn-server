@@ -1,0 +1,123 @@
+{
+    "log" : {
+      "access": "/var/log/xray/access.log",
+      "error": "/var/log/xray/error.log",
+      "loglevel": "warning"
+    },
+    "inbounds": [
+        {
+        "listen": "127.0.0.1",
+        "port": 10085,
+        "protocol": "dokodemo-door",
+        "settings": {
+          "address": "127.0.0.1"
+        },
+        "tag": "api"
+      },
+     {
+       "listen": "127.0.0.1",
+       "port": "20526",
+       "protocol": "vless",
+        "settings": {
+            "decryption":"none",
+              "clients": [
+                 {
+                   "id": "teamrreds2024"    
+  },{"id": "aff99780-f5d3-4108-a759-c3f773c3c87b"
+  },{"id": "a9d2a82a-def0-4f87-849f-f5d07bf8fea1"
+  },{"id": "0ee6bcde-ea49-4c87-8173-db8037ffe7dc"
+  },{"id": "4ed4547e-b65d-42e1-b20b-9e00656b1771"
+  },{"id": "85b50a12-4533-4223-8270-c45ae79fb8cf"
+  },{"id": "3cbc45ab-f5b9-4154-9561-4079fc9cb705"
+  },{"id": "f3de17a2-d389-42dd-b95c-4edeb6a388e7"
+  },{"id": "c5db50de-db2c-4763-8c47-6de8426ee68a"
+  },{"id": "d36ba317-9220-492e-9766-c03f5a4bd445"
+  },{"id": "6370ca38-01fb-45c0-88d4-2d6c7d731aca"
+  },{"id": "ed21bb57-254b-4a56-9558-121c55fbe899"
+  },{"id": "640131ca-2b12-4b7a-9067-8f1ce4b741ec"
+  },{"id": "33d86adc-55d6-4a85-bad6-eba2479b2644"
+  },{"id": "04fa66be-984e-463e-b846-475cf8401de8"
+  },{"id": "c513c757-3bce-416e-bb79-6073b5d94936"
+  
+                  }
+            ]
+         },
+         "streamSettings":{
+           "network": "ws",
+              "wsSettings": {
+                  "path": "/vless"
+            }
+          }
+       }
+    ],
+    "outbounds": [
+      {
+        "protocol": "freedom",
+        "settings": {}
+      },
+      {
+        "protocol": "blackhole",
+        "settings": {},
+        "tag": "blocked"
+      }
+    ],
+    "routing": {
+      "rules": [
+        {
+          "type": "field",
+          "ip": [
+            "0.0.0.0/8",
+            "10.0.0.0/8",
+            "100.64.0.0/10",
+            "169.254.0.0/16",
+            "172.16.0.0/12",
+            "192.0.0.0/24",
+            "192.0.2.0/24",
+            "192.168.0.0/16",
+            "198.18.0.0/15",
+            "198.51.100.0/24",
+            "203.0.113.0/24",
+            "::1/128",
+            "fc00::/7",
+            "fe80::/10"
+          ],
+          "outboundTag": "blocked"
+        },
+        {
+          "inboundTag": [
+            "api"
+          ],
+          "outboundTag": "api",
+          "type": "field"
+        },
+        {
+          "type": "field",
+          "outboundTag": "blocked",
+          "protocol": [
+            "bittorrent"
+          ]
+        }
+      ]
+    },
+    "stats": {},
+    "api": {
+      "services": [
+        "StatsService"
+      ],
+      "tag": "api"
+    },
+    "policy": {
+      "levels": {
+        "0": {
+          "statsUserDownlink": true,
+          "statsUserUplink": true
+        }
+      },
+      "system": {
+        "statsInboundUplink": true,
+        "statsInboundDownlink": true,
+        "statsOutboundUplink" : true,
+        "statsOutboundDownlink" : true
+      }
+    }
+  }
