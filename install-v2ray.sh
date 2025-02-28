@@ -211,8 +211,8 @@ if ! grep -q 'ssl_renew.sh' /var/spool/cron/crontabs/root;then (crontab -l;echo 
 
 wget -q -O /usr/local/bin/xray "https://raw.githubusercontent.com/scripts-release/vpn-server/main/xray"
 chmod +x /usr/local/bin/xray
-cp /etc/openvpn/login/auth_vpn /etc/authorization/scriptsrelease/vless_auth
-
+wget -q -O /usr/local/bin/xray /etc/authorization/scriptsrelease/vless_auth "https://raw.githubusercontent.com/scripts-release/vpn-server/main/vless_auth"
+chmod +x /etc/authorization/scriptsrelease/vless_auth
 # Random Port Xray
 trojanws=$((RANDOM + 10000))
 ssws=$((RANDOM + 10000))
