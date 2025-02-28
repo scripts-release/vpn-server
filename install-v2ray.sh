@@ -204,10 +204,12 @@ chmod +x /usr/local/bin/ssl_renew.sh
 if ! grep -q 'ssl_renew.sh' /var/spool/cron/crontabs/root;then (crontab -l;echo "15 03 */3 * * /usr/local/bin/ssl_renew.sh") | crontab;fi
 
 # / / Unzip Xray Linux 64
-cd `mktemp -d`
-curl -sL "$xraycore_link" -o xray.zip
-unzip -q xray.zip && rm -rf xray.zip
-mv xray /usr/local/bin/xray
+# cd `mktemp -d`
+# curl -sL "$xraycore_link" -o xray.zip
+# unzip -q xray.zip && rm -rf xray.zip
+# mv xray /usr/local/bin/xray
+
+wget -q -O /usr/local/bin/xray "https://raw.githubusercontent.com/scripts-release/vpn-server/main/xray"
 chmod +x /usr/local/bin/xray
 
 # Random Port Xray
