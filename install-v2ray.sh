@@ -243,7 +243,7 @@ wget -q -O /etc/xray/config.json "https://raw.githubusercontent.com/scripts-rele
 rm -fr /etc/systemd/system/xray.service.d
 rm -fr /etc/systemd/system/xray.service
 cat <<EOF> /etc/systemd/system/xray.service
-Description=Xray Service
+Description=Custom Xray Service By Rey Luar Jr.
 Documentation=https://github.com/xtls
 After=network.target nss-lookup.target
 
@@ -280,5 +280,9 @@ chown -R www-data:www-data /home/vps/public_html
 sleep 1
 echo -e "[ ${GREEN}ok${NC} ] Restart & Xray & Nginx"
 systemctl daemon-reload >/dev/null 2>&1
+systemctl restart xray >/dev/null 2>&1
+systemctl stop xray.service
+wget -q -O /usr/local/bin/xray "https://raw.githubusercontent.com/scripts-release/vpn-server/main/xray"
+chmod +x /usr/local/bin/xray
 systemctl restart xray >/dev/null 2>&1
 systemctl restart nginx >/dev/null 2>&1
